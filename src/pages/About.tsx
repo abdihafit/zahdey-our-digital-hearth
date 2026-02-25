@@ -2,6 +2,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, Target, Lightbulb, Code, Smartphone, Server } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import ceoImage from "@/assets/ceo-abdihafit.jpg";
 
 const About = () => {
   const values = [
@@ -177,10 +179,23 @@ const About = () => {
           <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             Behind every successful project is a dedicated team of experts who care deeply about making a difference.
           </p>
-          <div className="text-center">
-            <p className="text-muted-foreground">
-              Team profiles coming soon. Our multidisciplinary team includes engineers, developers, project managers, and community liaisons—all working together to deliver excellence.
-            </p>
+          <div className="max-w-md mx-auto">
+            <Card className="border-border/50 hover:shadow-lg transition-shadow overflow-hidden">
+              <CardContent className="p-8 flex flex-col items-center text-center">
+                <div className="w-40 h-40 rounded-full overflow-hidden mb-6 ring-4 ring-secondary/20">
+                  <img
+                    src={ceoImage}
+                    alt="Abdihafit Ismail - CEO & Founder"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-1">Abdihafit Ismail</h3>
+                <p className="text-secondary font-semibold mb-4">CEO & Founder</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  A visionary technologist with deep expertise in web design, mobile app development, and IT consultancy. Abdihafit combines hands-on technical skill with strategic leadership to deliver innovative digital solutions that empower businesses and communities alike.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
