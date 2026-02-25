@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, Target, Lightbulb } from "lucide-react";
+import { Heart, Users, Target, Lightbulb, Code, Smartphone, Server } from "lucide-react";
 
 const About = () => {
   const values = [
@@ -61,6 +61,62 @@ const About = () => {
             <p>
               Today, we're proud to combine our expertise in traditional utilities development with cutting-edge digital solutions. Whether we're designing a water distribution system or developing a custom web application, our approach remains the same: listen first, collaborate always, and build for the long term.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Services Section */}
+      <section className="bg-card py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
+            Our Services
+          </h2>
+          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+            We offer a range of digital services tailored to help businesses and communities thrive in the modern world.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <Card className="border-border/50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <div className="mb-4 inline-flex p-3 rounded-lg bg-secondary/10">
+                  <Code className="h-8 w-8 text-secondary" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-3 text-foreground">
+                  Web Design & Development
+                </h3>
+                <p className="text-muted-foreground">
+                  We craft beautiful, responsive websites that tell your story and drive results. From corporate sites to e-commerce platforms, we build custom digital experiences that engage your audience, strengthen your brand, and grow your business online.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <div className="mb-4 inline-flex p-3 rounded-lg bg-accent/10">
+                  <Smartphone className="h-8 w-8 text-accent" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-3 text-foreground">
+                  App Development
+                </h3>
+                <p className="text-muted-foreground">
+                  We design and develop mobile applications for iOS and Android that solve real problems. Whether it's a customer-facing app or an internal business tool, we deliver intuitive, high-performance solutions that users love and businesses depend on.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50 hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <div className="mb-4 inline-flex p-3 rounded-lg bg-primary/10">
+                  <Server className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-3 text-foreground">
+                  General IT Consultancy
+                </h3>
+                <p className="text-muted-foreground">
+                  Our expert consultants help organisations navigate the complex world of technology. From infrastructure planning and cybersecurity assessments to cloud migration and digital transformation strategy, we provide actionable guidance that aligns technology with your goals.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
