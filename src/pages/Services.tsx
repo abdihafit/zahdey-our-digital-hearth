@@ -6,9 +6,6 @@ import {
   Code, 
   Smartphone, 
   Server, 
-  Droplet, 
-  Zap, 
-  Radio, 
   Building2,
   CheckCircle
 } from "lucide-react";
@@ -51,39 +48,6 @@ const Services = () => {
   ];
 
   const utilitiesServices = [
-    {
-      icon: Droplet,
-      title: "Water Systems",
-      description: "Design, installation, and management of sustainable water distribution systems that ensure reliable access to clean water.",
-      features: [
-        "Water distribution networks",
-        "Treatment facilities",
-        "Pumping stations",
-        "System monitoring & maintenance",
-      ],
-    },
-    {
-      icon: Zap,
-      title: "Energy Solutions",
-      description: "Renewable energy infrastructure and smart grid solutions that power communities sustainably and efficiently.",
-      features: [
-        "Solar installations",
-        "Wind energy systems",
-        "Grid modernization",
-        "Energy efficiency consulting",
-      ],
-    },
-    {
-      icon: Radio,
-      title: "Telecommunications",
-      description: "Building robust communication networks that keep communities connected with reliable voice and data services.",
-      features: [
-        "Network infrastructure",
-        "Fiber optic installation",
-        "Wireless systems",
-        "Network maintenance",
-      ],
-    },
     {
       icon: Building2,
       title: "Public Infrastructure",
