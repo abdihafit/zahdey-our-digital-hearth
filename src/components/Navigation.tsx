@@ -1,42 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: sectionId } });
+    } else {
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
-    { name: "Services", path: "/services" },
+    { name: "Home", sectionId: "hero" },
+    { name: "About Us", sectionId: "about" },
+    { name: "Services", sectionId: "services" },
   ];
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
+          <button onClick={() => scrollToSection("hero")} className="flex items-center space-x-2">
             <span className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               ZAHDEY TECH
             </span>
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
+              <button
+                key={item.sectionId}
+                onClick={() => scrollToSection(item.sectionId)}
                 className="text-sm font-medium text-foreground hover:text-secondary transition-colors"
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
-            <Button variant="default" size="sm" asChild>
-              <Link to="/services">Get Started</Link>
+            <Button variant="default" size="sm" onClick={() => scrollToSection("contact")}>
+              Get Started
             </Button>
           </div>
 
@@ -51,17 +64,20 @@ const Navigation = () => {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col space-y-4 mt-8">
                 {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className="text-lg font-medium text-foreground hover:text-secondary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
+                  <SheetClose key={item.sectionId} asChild>
+                    <button
+                      onClick={() => scrollToSection(item.sectionId)}
+                      className="text-lg font-medium text-foreground hover:text-secondary transition-colors text-left"
+                    >
+                      {item.name}
+                    </button>
+                  </SheetClose>
                 ))}
-                <Button variant="default" size="lg" asChild className="mt-4">
-                  <Link to="/services">Get Started</Link>
-                </Button>
+                <SheetClose asChild>
+                  <Button variant="default" size="lg" onClick={() => scrollToSection("contact")} className="mt-4">
+                    Get Started
+                  </Button>
+                </SheetClose>
               </nav>
             </SheetContent>
           </Sheet>
