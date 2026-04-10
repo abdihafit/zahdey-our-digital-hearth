@@ -15,6 +15,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-image.jpg";
 import ceoImage from "@/assets/ceo-abdihafit.jpg";
+import mventoryLogo from "@/assets/mventory-logo.png";
 import { useState } from "react";
 
 const Home = () => {
@@ -190,6 +191,65 @@ const Home = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section id="products" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Products</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Digital products built for the African market, solving real problems for real businesses.
+          </p>
+        </div>
+
+        <div className="max-w-5xl mx-auto">
+          <Card className="border-border/50 overflow-hidden hover:shadow-xl transition-shadow">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3">
+                {/* Logo & Branding */}
+                <div className="bg-gradient-to-br from-[#2E5339] to-[#1B065E] p-8 flex flex-col items-center justify-center text-center">
+                  <img src={mventoryLogo} alt="M-VENTORY Logo" className="w-48 h-48 object-contain mb-4" />
+                  <p className="text-primary-foreground/80 text-sm font-medium">
+                    The Financial Operating System for African Small Businesses
+                  </p>
+                </div>
+
+                {/* Content */}
+                <div className="lg:col-span-2 p-8 space-y-5">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                    M-VENTORY
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Millions of shop owners, market traders, and kiosk operators receive payments through M-Pesa — but have no record of what came in, what went out, or whether they made a profit. <strong className="text-foreground">M-VENTORY changes that.</strong>
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    A simple Android app that automatically reads your M-Pesa messages and instantly turns every transaction into a proper business record — no typing, no accounting knowledge, no stress. It tracks daily sales, weekly income, monthly profit, and expenses — all automatically.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {[
+                      "Auto M-Pesa transaction capture",
+                      "Real-time sales dashboard",
+                      "KRA eTIMS compliance & invoicing",
+                      "Biashara Score (0–100 health rating)",
+                      "Daily, weekly & monthly reports",
+                      "Built for African businesses",
+                    ].map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="text-sm text-muted-foreground italic pt-2">
+                    Starting in Kenya and expanding across East and West Africa — M-VENTORY is the financial backbone of the next generation of African entrepreneurs.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
