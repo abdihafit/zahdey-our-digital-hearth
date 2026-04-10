@@ -6,9 +6,6 @@ import {
   Code, 
   Smartphone, 
   Server, 
-  Droplet, 
-  Zap, 
-  Radio, 
   Building2,
   CheckCircle
 } from "lucide-react";
@@ -51,39 +48,6 @@ const Services = () => {
   ];
 
   const utilitiesServices = [
-    {
-      icon: Droplet,
-      title: "Water Systems",
-      description: "Design, installation, and management of sustainable water distribution systems that ensure reliable access to clean water.",
-      features: [
-        "Water distribution networks",
-        "Treatment facilities",
-        "Pumping stations",
-        "System monitoring & maintenance",
-      ],
-    },
-    {
-      icon: Zap,
-      title: "Energy Solutions",
-      description: "Renewable energy infrastructure and smart grid solutions that power communities sustainably and efficiently.",
-      features: [
-        "Solar installations",
-        "Wind energy systems",
-        "Grid modernization",
-        "Energy efficiency consulting",
-      ],
-    },
-    {
-      icon: Radio,
-      title: "Telecommunications",
-      description: "Building robust communication networks that keep communities connected with reliable voice and data services.",
-      features: [
-        "Network infrastructure",
-        "Fiber optic installation",
-        "Wireless systems",
-        "Network maintenance",
-      ],
-    },
     {
       icon: Building2,
       title: "Public Infrastructure",
@@ -164,11 +128,11 @@ const Services = () => {
               Utilities Development
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl">
-              Essential infrastructure services that provide communities with reliable access to water, energy, and connectivity.
+              Essential infrastructure services that provide communities with reliable public facilities and development solutions.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 max-w-2xl gap-8">
             {utilitiesServices.map((service, index) => {
               const Icon = service.icon;
               return (
