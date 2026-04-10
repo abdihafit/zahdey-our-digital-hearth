@@ -1,58 +1,76 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Code, Smartphone, Server, Zap, Droplet, Radio, Building2 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Code, Smartphone, Server, Building2, CheckCircle,
+  Heart, Users, Target, Lightbulb,
+  Mail, Phone, MapPin, Send,
+} from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-image.jpg";
+import ceoImage from "@/assets/ceo-abdihafit.jpg";
+import { useState } from "react";
 
 const Home = () => {
+  const location = useLocation();
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+
+  useEffect(() => {
+    const scrollTo = (location.state as any)?.scrollTo;
+    if (scrollTo) {
+      setTimeout(() => {
+        document.getElementById(scrollTo)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location.state]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const mailtoLink = `mailto:zahdeytech@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    window.open(mailtoLink, "_blank");
+    toast({ title: "Opening email client", description: "Your message details have been prepared." });
+    setFormData({ name: "", email: "", subject: "", message: "" });
+  };
+
   const services = [
     {
       icon: Code,
-      title: "Web Design",
-      description: "Beautiful, responsive websites that engage your community",
+      title: "Web Design & Development",
+      description: "Custom websites that are beautiful, fast, and built to convert. We create responsive designs that work flawlessly on any device.",
+      features: ["Custom responsive designs", "E-commerce solutions", "Content management systems", "SEO optimization"],
     },
     {
       icon: Smartphone,
       title: "App Development",
-      description: "Mobile solutions that connect people and services",
+      description: "Native and cross-platform mobile applications that deliver exceptional user experiences and solve real business problems.",
+      features: ["iOS & Android apps", "Cross-platform solutions", "Progressive web apps", "App maintenance & updates"],
     },
     {
       icon: Server,
       title: "IT Consulting",
-      description: "Expert guidance for your technology infrastructure",
+      description: "Strategic technology guidance to help your organization make smart decisions about infrastructure, security, and digital transformation.",
+      features: ["Technology strategy", "Infrastructure planning", "Security assessments", "Cloud migration"],
     },
     {
-      icon: Droplet,
-      title: "Water Systems",
-      description: "Sustainable water management and distribution",
-    },
-    {
-      icon: Zap,
-      title: "Energy Solutions",
-      description: "Renewable energy infrastructure for communities",
-    },
-    {
-      icon: Radio,
-      title: "Telecommunications",
-      description: "Connecting communities with reliable networks",
+      icon: Building2,
+      title: "Public Infrastructure",
+      description: "Comprehensive infrastructure development for public facilities, ensuring they meet modern standards and community needs.",
+      features: ["Facility design & planning", "Project management", "Construction oversight", "Maintenance programs"],
     },
   ];
 
   const values = [
-    {
-      title: "Community First",
-      description: "We prioritize the needs of the communities we serve",
-    },
-    {
-      title: "Sustainability",
-      description: "Building solutions that last for generations",
-    },
-    {
-      title: "Innovation",
-      description: "Leveraging technology to solve real-world problems",
-    },
+    { icon: Heart, title: "Community First", description: "Every decision starts with: How does this benefit the communities we serve?" },
+    { icon: Users, title: "Collaboration", description: "We partner with local communities, governments, and organizations for lasting impact." },
+    { icon: Target, title: "Reliability", description: "We build systems communities can depend on, today and tomorrow." },
+    { icon: Lightbulb, title: "Innovation", description: "We combine proven methods with cutting-edge technology for practical solutions." },
   ];
 
   return (
@@ -60,18 +78,13 @@ const Home = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div 
+      <section id="hero" className="relative overflow-hidden">
+        <div
           className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          style={{ backgroundImage: `url(${heroImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-secondary/80 to-accent/70" />
         </div>
-        
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in">
@@ -81,101 +94,181 @@ const Home = () => {
               We're a community-focused technology company developing sustainable utilities and digital solutions that make a real difference.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
-              <Button size="lg" variant="secondary" asChild>
-                <Link to="/services">Explore Services</Link>
+              <Button size="lg" variant="secondary" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                Explore Services
               </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-                <Link to="/about">Learn About Us</Link>
+              <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
+                Learn About Us
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* About Section */}
+      <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            What We Do
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">About ZAHDEY TECH</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From digital solutions to essential utilities, we deliver comprehensive services that empower communities.
+            We're on a mission to make essential utilities and technology accessible, sustainable, and community-centered.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+        <div className="max-w-4xl mx-auto space-y-6 text-lg text-muted-foreground mb-16">
+          <p>ZAHDEY TECH LIMITED was founded with a simple belief: access to reliable utilities and modern technology shouldn't be a luxury—it should be a right for every community.</p>
+          <p>What started as a small team passionate about sustainable development has grown into a comprehensive utilities and technology development company. We've worked with communities across regions to deliver digital services and infrastructure that truly make a difference.</p>
+        </div>
+
+        {/* Values */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {values.map((value, index) => {
+            const Icon = value.icon;
             return (
-              <Card 
-                key={index} 
-                className="group hover:shadow-lg transition-all duration-300 border-border/50 hover:border-secondary/50"
-              >
+              <Card key={index} className="border-border/50 hover:shadow-lg transition-shadow text-center">
                 <CardContent className="p-6">
-                  <div className="mb-4 inline-flex p-3 rounded-lg bg-secondary/10 group-hover:bg-secondary/20 transition-colors">
+                  <div className="mb-4 inline-flex p-3 rounded-lg bg-secondary/10">
                     <Icon className="h-6 w-6 text-secondary" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {service.description}
-                  </p>
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground">{value.description}</p>
                 </CardContent>
               </Card>
             );
           })}
         </div>
 
-        <div className="text-center mt-12">
-          <Button variant="default" size="lg" asChild>
-            <Link to="/services">View All Services</Link>
-          </Button>
+        {/* CEO */}
+        <div className="max-w-md mx-auto">
+          <Card className="border-border/50 hover:shadow-lg transition-shadow overflow-hidden">
+            <CardContent className="p-8 flex flex-col items-center text-center">
+              <div className="w-40 h-40 rounded-full overflow-hidden mb-6 ring-4 ring-secondary/20">
+                <img src={ceoImage} alt="Abdihafit Ismail - CEO & Founder" className="w-full h-full object-cover object-top" />
+              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-1">Abdihafit Ismail</h3>
+              <p className="text-secondary font-semibold mb-4">CEO & Founder</p>
+              <p className="text-muted-foreground leading-relaxed">
+                A visionary technologist with deep expertise in web design, mobile app development, and IT consultancy. Abdihafit combines hands-on technical skill with strategic leadership to deliver innovative digital solutions.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="bg-card py-20">
+      {/* Services Section */}
+      <section id="services" className="bg-card py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Core Values
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Guiding principles that shape everything we do
+              Comprehensive solutions spanning digital innovation and essential utilities development.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((value, index) => (
-              <div 
-                key={index}
-                className="text-center p-6 rounded-lg bg-background hover:shadow-md transition-shadow"
-              >
-                <h3 className="text-2xl font-semibold mb-3 text-foreground">
-                  {value.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {value.description}
-                </p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <Card key={index} className="border-border/50 hover:shadow-lg transition-all">
+                  <CardHeader>
+                    <div className="mb-4 inline-flex p-3 rounded-lg bg-secondary/10">
+                      <Icon className="h-8 w-8 text-secondary" />
+                    </div>
+                    <CardTitle className="text-2xl">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-6">{service.description}</p>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-accent mr-2 flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Ready to Build Something Amazing?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Let's work together to create sustainable solutions for your community.
+      {/* Contact Section */}
+      <section id="contact" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Get In Touch</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Ready to start your project? Reach out to us and let's build something amazing together.
           </p>
-          <Button size="lg" variant="secondary" asChild>
-            <Link to="/services">Get In Touch</Link>
-          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {/* Contact Info */}
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">Contact Information</h3>
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-secondary/10">
+                    <Mail className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Email Us</p>
+                    <a href="mailto:zahdeytech@gmail.com" className="text-muted-foreground hover:text-secondary transition-colors block">zahdeytech@gmail.com</a>
+                    <a href="mailto:abdihafitofficial@gmail.com" className="text-muted-foreground hover:text-secondary transition-colors block">abdihafitofficial@gmail.com</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-secondary/10">
+                    <Phone className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Call Us</p>
+                    <a href="tel:+254722940735" className="text-muted-foreground hover:text-secondary transition-colors">+254 722 940 735</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-secondary/10">
+                    <MapPin className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Visit Us</p>
+                    <p className="text-muted-foreground">Opposite Jamia Mosque, Nairobi, Kenya</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <Card className="border-border/50">
+            <CardContent className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Your Name</Label>
+                    <Input id="name" placeholder="John Doe" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Your Email</Label>
+                    <Input id="email" type="email" placeholder="john@example.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="subject">Subject</Label>
+                  <Input id="subject" placeholder="How can we help?" value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea id="message" placeholder="Tell us about your project..." rows={5} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} required />
+                </div>
+                <Button type="submit" size="lg" className="w-full">
+                  <Send className="h-4 w-4 mr-2" />
+                  Send Message
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
