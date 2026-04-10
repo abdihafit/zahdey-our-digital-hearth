@@ -128,11 +128,11 @@ const Services = () => {
               Utilities Development
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl">
-              Essential infrastructure services that provide communities with reliable access to water, energy, and connectivity.
+              Essential infrastructure services that provide communities with reliable public facilities and development solutions.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 max-w-2xl gap-8">
             {utilitiesServices.map((service, index) => {
               const Icon = service.icon;
               return (
