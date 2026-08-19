@@ -1,73 +1,43 @@
-# Welcome to your Lovable project
+# ZAHDEY TECH
 
-## Project info
+Marketing website for ZAHDEY TECH, a Nairobi-based company focused on practical digital systems, product delivery, and infrastructure-minded execution.
 
-**URL**: https://lovable.dev/projects/7ceada48-90a1-4832-8463-ff6e1cbf75c7
+## Project Snapshot
 
-## How can I edit this code?
+- Stack: Vite, React, TypeScript, Tailwind CSS, shadcn/ui
+- Purpose: Present the company, its capabilities, flagship product, and contact path
+- Main sections: Homepage, About, Services, contact CTA, product spotlight for M-VENTORY
 
-There are several ways of editing your application.
+## Local Development
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/7ceada48-90a1-4832-8463-ff6e1cbf75c7) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build for production:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+```
 
-**Use GitHub Codespaces**
+## Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `src/pages`: Route-level pages for home, about, services, and 404
+- `src/components`: Reusable marketing and UI components
+- `src/data/siteContent.ts`: Shared company content, metrics, FAQs, and service copy
+- `src/assets`: Brand and photography assets used by the site
 
-## What technologies are used for this project?
+## Recent Refresh
 
-This project is built with:
+This codebase now includes:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- A clearer homepage narrative with capability, product, testimonial, FAQ, and contact sections
+- Reusable section components for heroes, cards, timelines, process grids, and CTAs
+- Updated About and Services pages that match the homepage design language
+- Improved metadata, route scroll behavior, and removal of leftover starter scaffolding
 
-## How can I deploy this project?
+## Notes
 
-Simply open [Lovable](https://lovable.dev/projects/7ceada48-90a1-4832-8463-ff6e1cbf75c7) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- The contact form opens the user’s email client with a prefilled message
+- SEO metadata is handled with a lightweight client-side component plus static tags in `index.html`
