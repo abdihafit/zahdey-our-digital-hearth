@@ -93,7 +93,29 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: "Segoe UI Variable Text", "Trebuchet MS", sans-serif;
+    background-image:
+      radial-gradient(circle at top, hsl(var(--secondary) / 0.08), transparent 28%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.55));
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: Georgia, "Times New Roman", serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: hsl(var(--secondary) / 0.22);
+    color: hsl(var(--foreground));
   }
 }
